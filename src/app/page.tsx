@@ -1,27 +1,28 @@
 import Image from "next/image"
 
-export default function ContainImage() {
+export default function ResponsiveImage() {
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        backgroundColor: "black", // ここで背景を黒にする
-        zIndex: -1,
-      }}
-    >
-      <Image
-        src="/dynamic-crystals.jpg"
-        alt="dynamic-crystals"
-        fill
-        style={{
-          objectFit: "cover", // 画像全体を表示し、アスペクト比を維持
-        }}
-        priority
-      />
+    <div className="fullscreen-container">
+      {/* スマホ用画像 */}
+      <div className="mobile-only">
+        <Image
+          src="/dynamic-crystals_sp.jpg"
+          alt="SP"
+          fill
+          style={{ objectFit: "cover" }}
+          priority
+        />
+      </div>
+      {/* PC用画像 */}
+      <div className="pc-only">
+        <Image
+          src="/dynamic-crystals.jpg"
+          alt="PC"
+          fill
+          style={{ objectFit: "cover" }}
+          priority
+        />
+      </div>
     </div>
   )
 }
