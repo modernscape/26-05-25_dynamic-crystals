@@ -18,7 +18,7 @@ export default function ContainImage() {
         alt="dynamic-crystals"
         fill
         style={{
-          objectFit: "contain", // 画像全体を表示し、アスペクト比を維持
+          objectFit: "cover", // 画像全体を表示し、アスペクト比を維持
         }}
         priority
       />
