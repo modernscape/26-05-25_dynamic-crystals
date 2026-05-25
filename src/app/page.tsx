@@ -16,7 +16,7 @@ export default function ResponsiveImage() {
       {/* PC用画像 */}
       <div className="pc-only">
         <Image
-          src="/dynamic-crystals.jpg"
+          src="/dynamic-crystals_pc.jpg"
           alt="PC"
           fill
           style={{ objectFit: "cover" }}
