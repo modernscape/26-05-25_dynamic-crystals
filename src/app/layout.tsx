@@ -15,6 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "dynamic crystals",
   description: "dynamic crystals",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    viewportFit: "cover", // これが重要：ノッチ部分まで領域を広げる
+  },
 }
 
 export default function RootLayout({

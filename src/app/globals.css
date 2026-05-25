@@ -25,10 +25,22 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.fullscreen-container {
+/* .fullscreen-container {
   position: fixed;
   inset: 0;
   background: black;
+  z-index: -1;
+} */
+
+/* CSSまたはTailwindでの適用例 */
+.fullscreen-container {
+  /* 従来の 100vh ではなく 100dvh を使う */
+  height: 100dvh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
   z-index: -1;
 }
 
