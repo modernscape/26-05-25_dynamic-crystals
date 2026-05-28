@@ -1,28 +1,27 @@
-import Image from "next/image"
+"use client"
 
-export default function ResponsiveImage() {
+import { Canvas } from "@react-three/fiber"
+import { Environment } from "@react-three/drei"
+import { CrystalField } from "@/components/CrystalField"
+import { Effects } from "@/components/Effects"
+import { OrbitControls } from "@react-three/drei"
+
+export default function Page() {
   return (
-    <div className="fullscreen-container">
-      {/* スマホ用画像 */}
-      <div className="mobile-only">
-        <Image
-          src="/dynamic-crystals_sp.jpg"
-          alt="SP"
-          fill
-          style={{ objectFit: "cover" }}
-          priority
-        />
-      </div>
-      {/* PC用画像 */}
-      <div className="pc-only">
-        <Image
-          src="/dynamic-crystals_pc.jpg"
-          alt="PC"
-          fill
-          style={{ objectFit: "cover" }}
-          priority
-        />
-      </div>
+    <div className="w-screen h-screen bg-black">
+      <Canvas camera={{ position: [0, 0, 10], fov: 50 }}>
+        <color attach="background" args={["#000"]} />
+
+        {/* HDRI環境光 */}
+        <Environment preset="city" />
+
+        {/* クリスタル群 */}
+        <CrystalField />
+
+        {/* ポストエフェクト */}
+        <Effects />
+        <OrbitControls minDistance={5} maxDistance={30} />
+      </Canvas>
     </div>
   )
 }
