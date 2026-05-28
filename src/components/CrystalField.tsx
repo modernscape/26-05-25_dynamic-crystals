@@ -22,7 +22,7 @@ export function CrystalField() {
   //   const geometry = nodes.Crystal_low002.children[0].geometry
   const geometry = mesh.geometry
 
-  const scaleBase = 0.08
+  const scaleBase = 0.1
 
   // 各instance情報
   const BOUNDS = 40
@@ -53,7 +53,7 @@ export function CrystalField() {
         Math.random() * 0.01,
       ),
 
-      scale: Math.random() * 0.08 + 0.01,
+      scale: Math.random() * scaleBase + 0.01,
     }))
   }, [])
 

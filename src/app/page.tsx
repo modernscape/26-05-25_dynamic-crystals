@@ -5,6 +5,7 @@ import { Environment } from "@react-three/drei"
 import { CrystalField } from "@/components/CrystalField"
 import { Effects } from "@/components/Effects"
 import { OrbitControls } from "@react-three/drei"
+import { GlowParticles } from "@/components/GlowParticles"
 
 export default function Page() {
   return (
@@ -18,9 +19,11 @@ export default function Page() {
         {/* クリスタル群 */}
         <CrystalField />
 
+        <GlowParticles />
+
         {/* ポストエフェクト */}
         <Effects />
-        <OrbitControls minDistance={5} maxDistance={30} />
+        <OrbitControls minDistance={5} maxDistance={40} />
       </Canvas>
     </div>
   )
