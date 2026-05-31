@@ -189,6 +189,16 @@ export function CrystalField() {
           chromaticAberration={0.01}
         />
       </mesh>
+
+      <mesh geometry={geometry} position={[10, 0, 10]} rotation={[0, 45, 0]}>
+        <MeshTransmissionMaterial
+          transmission={1}
+          thickness={0.1}
+          ior={1.05}
+          roughness={0}
+          chromaticAberration={0.01}
+        />
+      </mesh>
     </>
   )
 }
