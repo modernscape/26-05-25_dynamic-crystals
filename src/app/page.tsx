@@ -22,8 +22,8 @@ export default function Page() {
         <GlowParticles />
 
         {/* ポストエフェクト */}
-        <Effects />
-        <OrbitControls minDistance={5} maxDistance={40} />
+        {/* <Effects /> */}
+        <OrbitControls minDistance={2} maxDistance={40} />
       </Canvas>
     </div>
   )

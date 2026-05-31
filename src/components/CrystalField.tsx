@@ -4,25 +4,24 @@ import * as THREE from "three"
 import { useGLTF } from "@react-three/drei"
 import { useFrame } from "@react-three/fiber"
 import { useEffect, useMemo, useRef } from "react"
+import { MeshTransmissionMaterial } from "@react-three/drei"
 
 const COUNT = 300
 
 export function CrystalField() {
   const ref = useRef<THREE.InstancedMesh>(null)
 
+  const modelName = "crystal.glb"
+
   // GLTF読み込み
-  const { nodes } = useGLTF("/models/crystal.glb") as any
-
-  console.log(nodes.Crystal_low002.children[0])
-
+  const { nodes } = useGLTF("/models/" + modelName) as any
   const mesh = nodes.Crystal_low002.children[0]
-
-  // geometry取得
-  //   const geometry = nodes.Crystal.geometry
-  //   const geometry = nodes.Crystal_low002.children[0].geometry
   const geometry = mesh.geometry
 
-  const scaleBase = 0.1
+  const mesh2 = nodes.Crystal_low002.children[0]
+  const geometry2 = mesh2.geometry
+
+  const scaleBase = 0.3
 
   // 各instance情報
   const BOUNDS = 40
@@ -141,18 +140,55 @@ export function CrystalField() {
   })
 
   return (
-    <group ref={group}>
-      <instancedMesh ref={ref} args={[geometry, undefined, COUNT]}>
-        <meshPhysicalMaterial
+    // <group ref={group}>
+    //   <instancedMesh ref={ref} args={[geometry, undefined, COUNT]}>
+    //     <meshPhysicalMaterial
+    //       transparent
+    //       opacity={0.35}
+    //       roughness={0}
+    //       metalness={0}
+    //       depthWrite={false}
+    //     />
+
+    //     {/* <meshPhysicalMaterial
+    //       transmission={1}
+    //       roughness={0}
+    //       metalness={0}
+    //       thickness={1}
+    //       ior={1.5}
+    //       envMapIntensity={0.1}
+    //       color="#ffffff"
+    //     /> */}
+    //   </instancedMesh>
+    // </group>
+
+    <>
+      {/* <mesh position={[0, 0, -15]}>
+        <boxGeometry args={[10, 10, 0.1]} />
+        <meshBasicMaterial color="#222244" />
+      </mesh> */}
+
+      {/* 手前 */}
+      <mesh geometry={geometry} position={[0, 0, 0]}>
+        <MeshTransmissionMaterial
           transmission={1}
+          thickness={0.1}
+          ior={1.05}
           roughness={0}
-          metalness={0}
-          thickness={1}
-          ior={1.5}
-          envMapIntensity={2}
-          color="#ffffff"
+          chromaticAberration={0.01}
         />
-      </instancedMesh>
-    </group>
+      </mesh>
+
+      {/* 奥 */}
+      <mesh geometry={geometry} position={[0, 0, -10]} rotation={[0, 0, 90]}>
+        <MeshTransmissionMaterial
+          transmission={1}
+          thickness={0.1}
+          ior={1.05}
+          roughness={0}
+          chromaticAberration={0.01}
+        />
+      </mesh>
+    </>
   )
 }
